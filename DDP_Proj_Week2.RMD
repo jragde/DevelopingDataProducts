@@ -1,0 +1,41 @@
+---
+title: "DevelopingDataProducts_Proj1"
+author: "Jayant Ragde"
+date: "December 4, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Leaflet Example
+
+This is an example of a map with markers.  Clicking on any market will
+display the website for the associated location.  The displayed map shows
+some of the sites that may interest visitors to Atlanta.
+
+
+```{r my_map}
+library(leaflet)
+
+atlLatLong <- data.frame(
+  lat = c(33.756827, 33.767928, 33.774548, 33.763868, 33.760231, 33.789943),
+  lng = c(-84.373763, -84.356911, -84.396741, -84.395117, -84.395292, -84.385419))
+
+atlSites <- c(
+  "<a href=`https://www.nps.gov/malu/'>Martin Luther King Historic Site</a>",
+  "<a href=`http://www.cartercenter.org/'>The Carter Center</a>",
+  "<a href=`http://www.gatech.edu/'>Georgia Institute of Technology</a>",
+  "<a href=`https://www.georgiaquarium.org/'>Georgia Aquarium</a>",
+  "<a href=`https://www.cfbhall.com/'>College Football Hall of Fame",
+  "<a href=`https://www.high.org/'>High Museum of Art</a>"
+)
+
+atlLatLong %>%
+    leaflet() %>% 
+    addTiles() %>%
+    addMarkers(popup = atlSites)
+
+```
+
